@@ -1,0 +1,18 @@
+apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2
+kind: ReplicationController
+metadata:
+  name: nodejs-controller
+spec:
+  replicas: 4
+  selector:
+    app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: mailfigo/hello-world-njs:1
+        ports:
+        - containerPort: 80

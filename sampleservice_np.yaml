@@ -4,9 +4,8 @@ metadata:
   name: nodejs-service
 spec:
   ports:
-  - port: 8080
-    targetPort: 80
+  - port: 80
     protocol: TCP
   selector:
     app: nodejs
-  type: LoadBalancer
+  type: NodePort
