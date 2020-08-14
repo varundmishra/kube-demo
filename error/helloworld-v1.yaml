@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-v1-erv
+spec:
+  selector:
+    matchLabels:
+      run: helloworld-v1-erv
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: helloworld-v1-erv
+    spec:
+      containers:
+      - name: helloworld-v1-erv
+        image: mailfigo/hello-world-njs:1
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /ebsvol
+          name: ebsvolume
+      volumes:
+      - name: ebsvolume
+        awsElasticBlockStore:
+          volumeID: vol-0bbb07cec61991ded
+          fsType: ext4
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-v1-erv
+  labels:
+    run: helloworld-v1-erv
+spec:
+  ports:
+  - port: 80
+  selector:
+    run: helloworld-v1-erv

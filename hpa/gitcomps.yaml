@@ -112,7 +112,7 @@ spec:
       protocol: TCP
       targetPort: 443
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: metrics-server
@@ -142,6 +142,7 @@ spec:
             - /metrics-server
             - --kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP
             - --kubelet-insecure-tls
+            - --kubelet-port=10255
         volumeMounts:
         - name: tmp-dir
           mountPath: /tmp

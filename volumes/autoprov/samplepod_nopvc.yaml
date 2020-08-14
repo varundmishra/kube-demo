@@ -1,9 +1,9 @@
 apiVersion: v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Pod
 metadata:
-  name: helloworld-v1
+  name: helloworld-v1-nopvc
   labels:
-    app: helloworld-v1
+    app: helloworld-v1-nopvc
 spec:
   containers:
   - name: nodejs
@@ -11,10 +11,3 @@ spec:
     ports:
     - name: nodejs-port
       containerPort: 80
-    volumeMounts:
-    - name: autoprov
-      mountPath: /mnt
-  volumes:
-   - name: autoprov
-     persistentVolumeClaim: 
-      claimName: helloworld-v1-pvc 

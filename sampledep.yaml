@@ -5,7 +5,7 @@ metadata:
   labels:
     app: nodejs
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: nodejs
@@ -17,5 +17,5 @@ spec:
       containers:
       - name: nodejs
         image: mailfigo/hello-world-njs:1
-         ports:
+        ports:
         - containerPort: 80
